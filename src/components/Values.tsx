@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-interface Value {
-    _id?: string;
-    name: string;
-    description: string;
-    importance: number;
-}
+import IValue from "../interfaces/IValue";
 
 export default function Values() {
-    const [values, setValues] = useState<Value[]>([]);
-    const [value, setValue] = useState<Value>({
+    const [values, setValues] = useState<IValue[]>([]);
+    const [value, setValue] = useState<IValue>({
         name: "",
         description: "",
         importance: 0
@@ -20,7 +14,7 @@ export default function Values() {
         .then(response => response.json())
         .then(data => setValues([...data]));
     }
-    const addValue = async (value: Value) => {
+    const addValue = async (value: IValue) => {
         await fetch("http://localhost:7000/api/values", {
             method: "POST",            
             body: JSON.stringify(value),
@@ -63,7 +57,7 @@ export default function Values() {
         {
             values.map((value) => {
                 return <li className="card" key={value._id}>
-                    <Link to={`value/${value._id}`}>{value.name}</Link>
+                    <Link to={`values/${value._id}/${value.name}`}>{value.name}</Link>
                 </li>
             })
         }
