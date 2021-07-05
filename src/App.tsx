@@ -8,6 +8,7 @@ import {
 import './App.scss';
 
 import Values from "./components/Values"
+import Value from "./components/Value"
 import Home from "./components/Home"
 
 export default function App() {
@@ -23,7 +24,7 @@ export default function App() {
               <Link to="/values">Values</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <Link to="/activities">Activities</Link>
             </li>
           </ul>
         </nav>
@@ -35,7 +36,7 @@ export default function App() {
             <Values />
           </Route>
           <Route path="/activities">
-            <Users />
+            <Value />
           </Route>
           <Route path="/">
             <Home />
@@ -46,6 +47,3 @@ export default function App() {
   );
 }
 
-function Users() {
-  return <h2>Users</h2>;
-}
