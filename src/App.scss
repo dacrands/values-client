@@ -1,0 +1,25 @@
+.navbar {
+  ul {
+    outline: 1px dotted red;
+    margin: 0;    
+    display: flex;
+    justify-content: space-around;      
+    list-style-type: none;
+  }
+
+  a {
+    display: block;
+    padding: 1rem 0;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+h2 {
+  font-size: calc(10px + 2vmin);
+  text-align: center;
+}
