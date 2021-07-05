@@ -8,7 +8,7 @@ import {
 import './App.scss';
 
 import Values from "./components/Values"
-import Value from "./components/Value"
+import ValueInfo from "./components/ValueInfo"
 import Home from "./components/Home"
 
 export default function App() {
@@ -32,11 +32,14 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/values">
+          <Route exact path="/values">
             <Values />
           </Route>
+          <Route exact path="/values/:id/:name">
+            <ValueInfo />
+          </Route>
           <Route path="/activities">
-            <Value />
+            <ValueInfo />
           </Route>
           <Route path="/">
             <Home />
