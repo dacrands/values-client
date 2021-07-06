@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
 import IValue from "../interfaces/IValue";
 import IActivity from "../interfaces/IActivity";
 
 
-export default function ValueInfo() {
+export default function ValueInfo() {  
+    const history = useHistory();  
     const { id, name } = useParams<{ id: string, name: string }>();
     const [activities, setActivities] = useState<IActivity[]>([]);
     const [value, setValue] = useState<IValue>({
@@ -14,12 +15,18 @@ export default function ValueInfo() {
         importance: 0
     });
     const fetchValue = async () => {
-        fetch(`http://localhost:7000/api/values/${id}`)
+        await fetch(`http://localhost:7000/api/values/${id}`)
             .then(response => response.json())
             .then(data => {
                 setValue({ name: data.name, description: data.description, importance: data.importance })
                 setActivities([...data.activities])
             });
+    }
+    const deleteValue = async () => {
+        await fetch(`http://localhost:7000/api/values/${id}`, {
+            method: "DELETE"
+        })
+        history.push("/values");
     }
     useEffect(() => {
         fetchValue();
@@ -46,5 +53,8 @@ export default function ValueInfo() {
                 })
             }
         </ul>
+        <div style={{ textAlign: "center" }}>
+            <button onClick={deleteValue}>Delete Value</button>
+        </div>
     </>
 }
