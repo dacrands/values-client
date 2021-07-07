@@ -23,6 +23,9 @@ export default function ValueInfo() {
             });
     }
     const deleteValue = async () => {
+        if (!window.confirm(`Are yous sure you want to delete the value: ${value.name}`)) {
+            return;
+        };
         await fetch(`http://localhost:7000/api/values/${id}`, {
             method: "DELETE"
         })
