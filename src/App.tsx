@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import './App.scss';
 
+import Activities from "./components/Activities"
 import Values from "./components/Values"
 import ValueInfo from "./components/ValueInfo"
 import Home from "./components/Home"
@@ -39,7 +40,7 @@ export default function App() {
             <ValueInfo />
           </Route>
           <Route path="/activities">
-            <ValueInfo />
+            <Activities />
           </Route>
           <Route path="/">
             <Home />
