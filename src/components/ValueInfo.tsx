@@ -47,10 +47,12 @@ export default function ValueInfo() {
             {
                 activities.map((value) => {
                     return <li className="card">
-                        <Link to="activities">
-                            <span>{value.name}</span>                            
-                            <span>{value.duration} minutes</span>
-                            <span>{new Date(value.createdAt).toString()}</span>
+                        <Link to="/activities">
+                            <span>{value.name}</span>  
+                            <div style={{fontWeight: 100, display: "flex", flexDirection: "column", alignItems: "center"}}>
+                                <span>{value.duration} minutes</span>
+                                <span>{new Date(value.createdAt).toString()}</span>
+                            </div>                          
                         </Link>
                     </li>
                 })
