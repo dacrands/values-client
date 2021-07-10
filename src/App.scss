@@ -3,6 +3,26 @@ h2 {
   text-align: center;
 }
 
+.btn {  
+  border:none;
+  border-radius: 10px;
+  padding: 1rem;
+  cursor:pointer;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.btn-primary {
+  background-color: teal;
+  color: #fefefe;
+}
+
+.btn-delete {
+  background: rgb(167, 63, 63);
+  color: #fefefe;
+}
+
 .navbar {
   ul {    
     margin: 0;    
@@ -52,6 +72,7 @@ h2 {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    letter-spacing: 1.5px;
     height: 100%; 
     width: 100%;
   }
@@ -80,19 +101,11 @@ h2 {
     font-size: 18px;
     margin-bottom: 10px;        
   }
-  button {    
-    font-size: 24px;
-    margin-top: 1rem;
-    background: teal;
-    color: white;
-    font-weight: bold;
-    width: 150px;    
-  }
 }
 
 .form-item {
   border: 0;
+  margin-top: 1rem;
   padding: 1rem;
   border-radius: 10px;
-  background-color : rgba(255, 255, 255, 0.75);
 }
