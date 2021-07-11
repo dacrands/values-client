@@ -51,7 +51,7 @@ export default function Values() {
             <input className="form-item" type="text" placeholder="Describe the value..." name="description" value={value.description} onChange={onChange} />
             <input className="form-item" type="number" name="importance" value={value.importance} onChange={onChange} />
             <span>On a 1-10 scale, how important is the value?</span>
-            <button className="form-item" type="submit">Submit</button>
+            <button className="form-item btn btn-primary" type="submit">Submit</button>
         </form>
         <ul className="plain-list card-grid">
         {
