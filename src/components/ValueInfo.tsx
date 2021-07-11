@@ -48,7 +48,7 @@ export default function ValueInfo() {
                 activities.map((activity) => {
                     return <li className="card">
                         <Link to="/activities">
-                            <span>{activity.name}</span>  
+                            <h4>{activity.name}</h4>  
                             <div style={{fontWeight: 100, display: "flex", flexDirection: "column", alignItems: "center"}}>
                                 <span>{activity.duration} minutes</span>
                                 {activity.createdAt &&
