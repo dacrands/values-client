@@ -1,5 +1,7 @@
 export default interface IActivity {
-    name: string,
-    duration: number,
-    createdAt: string
+    _id?: string;
+    name: string;
+    duration: number;
+    createdAt?: string;
+    value?: string;
 }
