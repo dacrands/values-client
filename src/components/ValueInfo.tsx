@@ -45,13 +45,15 @@ export default function ValueInfo() {
         <h3 style={{ textAlign: "center" }}>Activities</h3>
         <ul className="card-grid">
             {
-                activities.map((value) => {
+                activities.map((activity) => {
                     return <li className="card">
                         <Link to="/activities">
-                            <span>{value.name}</span>  
+                            <span>{activity.name}</span>  
                             <div style={{fontWeight: 100, display: "flex", flexDirection: "column", alignItems: "center"}}>
-                                <span>{value.duration} minutes</span>
-                                <span>{new Date(value.createdAt).toString()}</span>
+                                <span>{activity.duration} minutes</span>
+                                {activity.createdAt &&
+                                    <span>{new Date(activity.createdAt).toString()}</span>
+                                }                                
                             </div>                          
                         </Link>
                     </li>
@@ -59,7 +61,7 @@ export default function ValueInfo() {
             }
         </ul>
         <div style={{ textAlign: "center" }}>
-            <button onClick={deleteValue}>Delete Value</button>
+            <button className="btn btn-delete" onClick={deleteValue}>Delete Value</button>
         </div>
     </>
 }
