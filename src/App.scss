@@ -106,9 +106,11 @@ h2 {
 }
 
 .form {  
+  max-width: 500px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;  
   padding: 1rem;  
 }
 
