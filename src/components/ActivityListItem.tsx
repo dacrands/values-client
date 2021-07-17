@@ -8,7 +8,7 @@ export default function ActivityListItem(props: IActivityListItemProps) {
             <h4>{props.activity.name}</h4>  
             <p>{props.activity.duration} minutes</p>
             {props.activity.createdAt &&
-                <p>{new Date(props.activity.createdAt).toString()}</p>
+                <p>{new Date(props.activity.createdAt).toLocaleString()}</p>
             }                                                  
         </li>
     )
