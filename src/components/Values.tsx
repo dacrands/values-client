@@ -44,7 +44,7 @@ export default function Values() {
         fetchValues();
     }, [])
 
-    return <>
+    return <div  className="container">
         <h2>Your Values</h2>
         <form className="form" onSubmit={handleSubmit}>
             <input className="form-item" type="text" placeholder="Name something you value..." name="name" value={value.name} onChange={onChange} />
@@ -62,5 +62,5 @@ export default function Values() {
             })
         }
         </ul>
-    </>
+    </div>
 }

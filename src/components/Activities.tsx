@@ -59,7 +59,7 @@ export default function Activities() {
         fetchValues();
     }, [])
     return (
-        <div>
+        <div className="container">
             <h2>Acitivities</h2>
             <form className="form" onSubmit={handleSubmit}>
                 <input className="form-item" type="text" placeholder="Name your activity..." value={activity.name} name="name" onChange={onChange} />

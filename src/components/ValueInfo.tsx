@@ -35,7 +35,7 @@ export default function ValueInfo() {
         fetchValue();
     }, []);
 
-    return <>
+    return <div className="container">
         <header className="header">
             <h2>{name}</h2>
             <p>Description: {value.description}</p>
@@ -63,5 +63,5 @@ export default function ValueInfo() {
         <div style={{ textAlign: "center" }}>
             <button className="btn btn-delete" onClick={deleteValue}>Delete Value</button>
         </div>
-    </>
+    </div>
 }
