@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom'
 import IValue from "../interfaces/IValue";
 import IActivity from "../interfaces/IActivity";
+import ActivityListItem from './ActivityListItem';
 
 
 export default function ValueInfo() {  
@@ -43,20 +44,10 @@ export default function ValueInfo() {
         </header>
 
         <h3 style={{ textAlign: "center" }}>Activities</h3>
-        <ul className="card-grid">
+        <ul className="plain-list card-grid">
             {
                 activities.map((activity) => {
-                    return <li className="card">
-                        <Link to="/activities">
-                            <h4>{activity.name}</h4>  
-                            <div style={{fontWeight: 100, display: "flex", flexDirection: "column", alignItems: "center"}}>
-                                <span>{activity.duration} minutes</span>
-                                {activity.createdAt &&
-                                    <span>{new Date(activity.createdAt).toString()}</span>
-                                }                                
-                            </div>                          
-                        </Link>
-                    </li>
+                    return <ActivityListItem activity={activity} />
                 })
             }
         </ul>

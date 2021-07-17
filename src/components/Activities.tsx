@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import IActivity from '../interfaces/IActivity';
 import IValue from '../interfaces/IValue';
+import ActivityListItem from './ActivityListItem';
 
 export default function Activities() {
     const [values, setValues] = useState<IValue[]>([]);
@@ -79,15 +80,7 @@ export default function Activities() {
             <ul className="plain-list card-grid">
                 {
                     activities.map((activity) => {
-                        return <li className="card" key={activity._id}>
-                            <h4>{activity.name}</h4>  
-                            <div style={{fontWeight: 100, display: "flex", flexDirection: "column", alignItems: "center"}}>
-                                <span>{activity.duration} minutes</span>
-                                {activity.createdAt &&
-                                    <span>{new Date(activity.createdAt).toString()}</span>
-                                }                                
-                            </div>
-                        </li>
+                        return <ActivityListItem activity={activity} />
                     })
                 }
             </ul>
