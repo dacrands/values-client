@@ -50,7 +50,7 @@ export default function Activities() {
 
     return (
         <div className="container">
-            <h2>Acitivities</h2>
+            <h2>Activities</h2>
             <form className="form" onSubmit={handleSubmit}>
                 <input className="form-item" type="text" placeholder="Name your activity..." value={activity.name} name="name" onChange={onChange} />
                 <input className="form-item" type="number" name="duration" value={activity.duration} onChange={onChange} />
