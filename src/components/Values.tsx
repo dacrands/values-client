@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import IValue from "../interfaces/IValue";
+import fetchValues from '../fetches/FetchValues';
+import addValue from '../fetches/AddValue';
 
 export default function Values() {
     const [values, setValues] = useState<IValue[]>([]);
@@ -9,30 +11,18 @@ export default function Values() {
         description: "",
         importance: 0
     });
-    const fetchValues = async () => {
-        await fetch("http://localhost:7000/api/values")
-        .then(response => response.json())
-        .then(data => setValues([...data]));
-    }
-    const addValue = async (value: IValue) => {
-        await fetch("http://localhost:7000/api/values", {
-            method: "POST",            
-            body: JSON.stringify(value),
-            headers: {
-                'Content-Type': 'application/json'              
-            },
-        });       
-    }
+
     const handleSubmit = async (e: React.SyntheticEvent): Promise<void> => {
         e.preventDefault();
         await addValue(value);
-        await fetchValues();
+        await fetchValues(setValues);
         setValue({
             name: "",
             description: "",
             importance: 0
         });
     }
+
     const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
         const { name, value } = e.target as HTMLTextAreaElement;
         setValue(prevState  => ({
@@ -40,8 +30,9 @@ export default function Values() {
             [name]: value
         }));
     }
+    
     useEffect(() => {
-        fetchValues();
+        fetchValues(setValues);
     }, [])
 
     return <div  className="container">

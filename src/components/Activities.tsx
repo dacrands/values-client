@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import IActivity from '../interfaces/IActivity';
 import IValue from '../interfaces/IValue';
+import fetchValues from '../fetches/FetchValues';
+import fetchActivities from '../fetches/FetchActivities';
+import addActivity from '../fetches/AddActivity';
 import ActivityListItem from './ActivityListItem';
 
 export default function Activities() {
@@ -10,37 +13,20 @@ export default function Activities() {
         name: "",
         duration: 0,
         value: ""
-    });
-    const fetchActivities = async () => {
-        await fetch("http://localhost:7000/api/activities")
-            .then(response => response.json())
-            .then(data => setActivities([...data]));
-    }
-    const fetchValues = async () => {
-        await fetch("http://localhost:7000/api/values")
-        .then(response => response.json())
-        .then(data => setValues([...data]));
-    }
-    const addActivity = async (activity: IActivity) => {
-        await fetch("http://localhost:7000/api/activities", {
-            method: "POST",            
-            body: JSON.stringify(activity),
-            headers: {
-                'Content-Type': 'application/json'              
-            },
-        });       
-    }
+    });    
+
     const handleSubmit = async (e: React.SyntheticEvent): Promise<void> => {
         e.preventDefault();
         await addActivity(activity);
-        await fetchValues();
-        await fetchActivities();
+        await fetchValues(setValues);
+        await fetchActivities(setActivities);
         setActivity({
             name: "",
             duration: 0,
             value: ""
         });
     }
+
     const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {        
         const { name, value } = e.target;
         setActivity(prevState => ({
@@ -48,6 +34,7 @@ export default function Activities() {
             [name]: value
         }));
     }
+
     const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {        
         const { name, value } = e.target;
         setActivity(prevState => ({
@@ -55,10 +42,12 @@ export default function Activities() {
             [name]: value
         }));
     }
+
     useEffect(() => {
-        fetchActivities();
-        fetchValues();
+        fetchActivities(setActivities);
+        fetchValues(setValues);
     }, [])
+
     return (
         <div className="container">
             <h2>Acitivities</h2>

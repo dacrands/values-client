@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import IValue from "../interfaces/IValue";
 import IActivity from "../interfaces/IActivity";
 import ActivityListItem from './ActivityListItem';
+import fetchValueById from '../fetches/FetchValueById';
+import deleteValueById from '../fetches/DeleteValueById';
 
 
 export default function ValueInfo() {  
@@ -15,25 +17,9 @@ export default function ValueInfo() {
         description: "",
         importance: 0
     });
-    const fetchValue = async () => {
-        await fetch(`http://localhost:7000/api/values/${id}`)
-            .then(response => response.json())
-            .then(data => {
-                setValue({ name: data.name, description: data.description, importance: data.importance })
-                setActivities([...data.activities])
-            });
-    }
-    const deleteValue = async () => {
-        if (!window.confirm(`Are yous sure you want to delete the value: ${value.name}`)) {
-            return;
-        };
-        await fetch(`http://localhost:7000/api/values/${id}`, {
-            method: "DELETE"
-        })
-        history.push("/values");
-    }
+       
     useEffect(() => {
-        fetchValue();
+        fetchValueById(id, setValue, setActivities);
     }, []);
 
     return <div className="container">
@@ -52,7 +38,7 @@ export default function ValueInfo() {
             }
         </ul>
         <div style={{ textAlign: "center" }}>
-            <button className="btn btn-delete" onClick={deleteValue}>Delete Value</button>
+            <button className="btn btn-delete" onClick={() => deleteValueById(id, value.name, history)}>Delete Value</button>
         </div>
     </div>
 }
