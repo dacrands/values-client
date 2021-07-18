@@ -11,6 +11,7 @@ import Activities from "./components/Activities"
 import Values from "./components/Values"
 import ValueInfo from "./components/ValueInfo"
 import Home from "./components/Home"
+import ActivityInfo from "./components/ActivityInfo";
 
 export default function App() {
   return (
@@ -39,8 +40,11 @@ export default function App() {
           <Route exact path="/values/:id/:name">
             <ValueInfo />
           </Route>
-          <Route path="/activities">
+          <Route exact path="/activities">
             <Activities />
+          </Route>
+          <Route exact path="/activities/:id/:name">
+            <ActivityInfo />
           </Route>
           <Route path="/">
             <Home />
