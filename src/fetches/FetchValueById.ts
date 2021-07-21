@@ -1,6 +1,5 @@
 import IActivity from "../interfaces/IActivity";
 import IValue from "../interfaces/IValue";
-import fetchValues from "./FetchValues";
 
 type ActivitiesStateCallback = {
     (activities: IActivity[]): void;    
