@@ -1,63 +1,94 @@
-import React, { useEffect, useState } from "react"
-import { useHistory } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import deleteActivityById from "../fetches/DeleteActivityById";
 import fetchActivityById from "../fetches/FetchActivityById";
 import updateActivityById from "../fetches/UpdateActivityById";
 import IActivity from "../interfaces/IActivity";
 
 export default function ActivityInfo() {
-    const history = useHistory();  
-    const { id, name } = useParams<{ id: string, name: string }>();
-    const [isEditing, setIsEditing] = useState<boolean>(false);
-    const [activity, setActivity] = useState<IActivity>({                
-        name: "",
-        duration: 0,        
-        createdAt: ""
-    })
+  const history = useHistory();
+  const { id, name } = useParams<{ id: string; name: string }>();
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [activity, setActivity] = useState<IActivity>({
+    name: "",
+    duration: 0,
+    createdAt: "",
+  });
 
-    const onChange = (e: React.FormEvent<HTMLInputElement>): void => {         
-        const { name, value } = e.target as HTMLTextAreaElement;
-        setActivity(prevState  => ({
-            ...prevState,
-            [name]: value
-        }));
-    }
+  const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target as HTMLTextAreaElement;
+    setActivity((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
-    const handleSubmit = async (e: React.SyntheticEvent): Promise<void> => {
-        e.preventDefault();
-        await updateActivityById(id, activity);
-        await fetchActivityById(id, setActivity);
-        setIsEditing(false);
-    }
+  const handleSubmit = async (e: React.SyntheticEvent): Promise<void> => {
+    e.preventDefault();
+    await updateActivityById(id, activity);
+    await fetchActivityById(id, setActivity);
+    setIsEditing(false);
+  };
 
-    useEffect(() => {        
-        fetchActivityById(id, setActivity);
-    }, [])
+  useEffect(() => {
+    fetchActivityById(id, setActivity);
+  }, []);
 
-    return <div className="container">
-        <header className="header">
-            <h2>Activity Info</h2>            
-        </header>
-        <div style={{display: "flex", flexDirection: "column", textAlign: "center", alignItems: "center"}}>
-            {isEditing
-            ? <form onSubmit={handleSubmit}>
-                <input type="text" className="form-item" name="name" value={activity.name} onChange={onChange}/>
-                <input type="number" className="form-item" name="duration" value={activity.duration} onChange={onChange}/>
-                <button className="btn" type="submit">Submit</button>
-            </form>
-            : <>
-                <p>{activity.name === "" ? name : activity.name}</p>
-                <p>{activity.duration} minutes</p> 
-            </>
-            }            
-            {activity.createdAt &&
-                <p>{new Date(activity.createdAt).toLocaleString()}</p>
-            }
-            <button className="btn" onClick={() => setIsEditing(!isEditing)}>Edit</button>
-        </div>
-        <div style={{ textAlign: "center", marginTop: "2rem" }}>
-            <button className="btn btn-delete" onClick={() => deleteActivityById(id, activity.name, history)}>Delete Value</button>
-        </div>
+  return (
+    <div className="container">
+      <header className="header">
+        <h2>Activity Info</h2>
+      </header>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          textAlign: "center",
+          alignItems: "center",
+        }}
+      >
+        {isEditing ? (
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              className="form-item"
+              name="name"
+              value={activity.name}
+              onChange={onChange}
+            />
+            <input
+              type="number"
+              className="form-item"
+              name="duration"
+              value={activity.duration}
+              onChange={onChange}
+            />
+            <button className="btn" type="submit">
+              Submit
+            </button>
+          </form>
+        ) : (
+          <>
+            <p>{activity.name === "" ? name : activity.name}</p>
+            <p>{activity.duration} minutes</p>
+          </>
+        )}
+        {activity.createdAt && (
+          <p>{new Date(activity.createdAt).toLocaleString()}</p>
+        )}
+        <button className="btn" onClick={() => setIsEditing(!isEditing)}>
+          Edit
+        </button>
+      </div>
+      <div style={{ textAlign: "center", marginTop: "2rem" }}>
+        <button
+          className="btn btn-delete"
+          onClick={() => deleteActivityById(id, activity.name, history)}
+        >
+          Delete Value
+        </button>
+      </div>
     </div>
+  );
 }

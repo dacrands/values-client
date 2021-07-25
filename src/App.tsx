@@ -1,16 +1,11 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import './App.scss';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "./App.scss";
 
-import Activities from "./components/Activities"
-import Values from "./components/Values"
-import ValueInfo from "./components/ValueInfo"
-import Home from "./components/Home"
+import Activities from "./components/Activities";
+import Values from "./components/Values";
+import ValueInfo from "./components/ValueInfo";
+import Home from "./components/Home";
 import ActivityInfo from "./components/ActivityInfo";
 
 export default function App() {
@@ -54,4 +49,3 @@ export default function App() {
     </Router>
   );
 }
-
