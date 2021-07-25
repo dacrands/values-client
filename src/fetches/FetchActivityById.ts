@@ -12,8 +12,8 @@ const fetchActivityById = async (
     await fetch(`http://localhost:7000/api/activities/${id}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             fn({
+                _id: data.id,
                 name: data.name,
                 duration: data.duration,
                 value: data.value,
