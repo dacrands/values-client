@@ -40,14 +40,7 @@ export default function ActivityInfo() {
       <header className="header">
         <h2>Activity Info</h2>
       </header>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          textAlign: "center",
-          alignItems: "center",
-        }}
-      >
+      <div className="flex-center text-center">
         {isEditing ? (
           <form onSubmit={handleSubmit}>
             <input
@@ -64,7 +57,7 @@ export default function ActivityInfo() {
               value={activity.duration}
               onChange={onChange}
             />
-            <button className="btn" type="submit">
+            <button className="btn btn-primary" type="submit">
               Submit
             </button>
           </form>
