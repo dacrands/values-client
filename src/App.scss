@@ -110,6 +110,14 @@ h2 {
   grid-auto-rows: minmax(100px, auto);
 }
 
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .form {  
   max-width: 500px;
   margin: 0 auto;
@@ -127,6 +135,10 @@ h2 {
   font-size: 18px;
   margin-bottom: 10px; 
   width: 90%;  
+}
+
+.text-center {
+  text-align: center;
 }
 
 
