@@ -8,8 +8,8 @@ export default function ActivityListItem(props: IActivityListItemProps) {
       <Link to={`/activities/${props.activity._id}/${props.activity.name}`}>
         <h4>{props.activity.name}</h4>
         <p>{props.activity.duration} minutes</p>
-        {props.activity.createdAt && (
-          <p>{new Date(props.activity.createdAt).toLocaleString()}</p>
+        {props.activity.time && (
+          <p>{new Date(props.activity.time).toLocaleString()}</p>
         )}
       </Link>
     </li>
