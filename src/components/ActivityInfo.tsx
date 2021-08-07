@@ -43,7 +43,7 @@ export default function ActivityInfo() {
       </header>
       <div className="flex-center text-center">
         {isEditing ? (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} style={{ marginBottom: "2rem"}}>
             <input
               type="text"
               className="form-item"
@@ -58,6 +58,13 @@ export default function ActivityInfo() {
               value={activity.duration}
               onChange={onChange}
             />
+            <input
+              className="form-item"
+              type="datetime-local"
+              value={activity.time}
+              name="time"
+              onChange={onChange}
+            />
             <button className="btn btn-primary" type="submit">
               Submit
             </button>
@@ -65,8 +72,8 @@ export default function ActivityInfo() {
         ) : (
           <>
             <p>{activity.name === "" ? name : activity.name}</p>
-            <p>{activity.time === undefined 
-              ? "No Time Selected" 
+            <p>{activity.time === undefined
+              ? "No Time Selected"
               : new Date(activity.time).toLocaleString()}
             </p>
             <p>{activity.duration} minutes</p>
