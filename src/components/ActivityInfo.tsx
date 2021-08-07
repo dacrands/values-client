@@ -88,7 +88,7 @@ export default function ActivityInfo() {
           className="btn btn-delete"
           onClick={() => deleteActivityById(id, activity.name, history)}
         >
-          Delete Value
+          Delete Activity
         </button>
       </div>
     </div>
