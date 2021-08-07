@@ -13,6 +13,7 @@ export default function ActivityInfo() {
   const [activity, setActivity] = useState<IActivity>({
     name: "",
     duration: 0,
+    time: "",
     createdAt: "",
   });
 
@@ -64,11 +65,12 @@ export default function ActivityInfo() {
         ) : (
           <>
             <p>{activity.name === "" ? name : activity.name}</p>
+            <p>{activity.time === undefined 
+              ? "No Time Selected" 
+              : new Date(activity.time).toLocaleString()}
+            </p>
             <p>{activity.duration} minutes</p>
           </>
-        )}
-        {activity.createdAt && (
-          <p>{new Date(activity.createdAt).toLocaleString()}</p>
         )}
         <button className="btn" onClick={() => setIsEditing(!isEditing)}>
           Edit
