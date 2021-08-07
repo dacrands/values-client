@@ -46,6 +46,7 @@ export default function Values() {
           name="name"
           value={value.name}
           onChange={onChange}
+          required
         />
         <input
           className="form-item"
@@ -54,6 +55,7 @@ export default function Values() {
           name="description"
           value={value.description}
           onChange={onChange}
+          required
         />
         <input
           className="form-item"
@@ -61,6 +63,7 @@ export default function Values() {
           name="importance"
           value={value.importance}
           onChange={onChange}
+          required
         />
         <span>On a 1-10 scale, how important is the value?</span>
         <button className="form-item btn btn-primary" type="submit">
