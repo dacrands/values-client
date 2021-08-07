@@ -12,6 +12,7 @@ const fetchActivityById = async (id: string, fn: ActivityStateCallback) => {
         _id: data.id,
         name: data.name,
         duration: data.duration,
+        time: data.time,
         value: data.value,
         createdAt: data.createdAt,
       });
