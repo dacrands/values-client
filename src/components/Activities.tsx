@@ -12,6 +12,7 @@ export default function Activities() {
   const [activity, setActivity] = useState<IActivity>({
     name: "",
     duration: 0,
+    time: "",
     value: "",
   });
 
@@ -23,6 +24,7 @@ export default function Activities() {
     setActivity({
       name: "",
       duration: 0,
+      time: "",
       value: "",
     });
   };
@@ -60,6 +62,13 @@ export default function Activities() {
           name="name"
           onChange={onChange}
         />
+        <input 
+          className="form-item"
+          type="datetime-local" 
+          value={activity.time}
+          name="time"
+          onChange={onChange}
+        />
         <input
           className="form-item"
           type="number"
@@ -73,7 +82,8 @@ export default function Activities() {
           name="value"
           value={activity.value}
           onChange={onSelectChange}
-        >
+        > 
+          <option>Select an option</option>
           {values.map((value) => {
             return (
               <option key={value._id} value={value._id}>
