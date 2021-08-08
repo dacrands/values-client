@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import IValue from "../interfaces/IValue";
 import IActivity from "../interfaces/IActivity";
 import ActivityListItem from "./ActivityListItem";
 import fetchValueById from "../fetches/FetchValueById";
 import deleteValueById from "../fetches/DeleteValueById";
-import updateValueById from "../fetches/UpdateValueById";
+import ValueForm from "../forms/ValueForm";
 
 export default function ValueInfo() {
   const history = useHistory();
@@ -19,21 +18,6 @@ export default function ValueInfo() {
     importance: 0,
   });
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
-    const { name, value } = e.target as HTMLTextAreaElement;
-    setValue((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.SyntheticEvent): Promise<void> => {
-    e.preventDefault();
-    await updateValueById(id, value);
-    await fetchValueById(id, setValue, setActivities);
-    setIsEditing(false);
-  };
-
   useEffect(() => {
     fetchValueById(id, setValue, setActivities);
   }, []);
@@ -42,34 +26,13 @@ export default function ValueInfo() {
     <div className="container">
       <div className="flex-center">
         {isEditing ?
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              className="form-item"
-              name="name"
-              value={value.name}
-              onChange={onChange}
-            />
-            <input
-              type="text"
-              className="form-item"
-              name="description"
-              value={value.description}
-              onChange={onChange}
-            />
-            <input
-              type="number"
-              className="form-item"
-              name="importance"
-              value={value.importance}
-              onChange={onChange}
-            />
-            <div className="text-center">
-              <button className="btn btn-primary" type="submit">
-                Submit
-              </button>
-            </div>
-          </form>
+          <ValueForm 
+            id={id}
+            value={value}
+            setValue={setValue}
+            setActivities={setActivities}
+            setIsEditing={setIsEditing}
+          />
           : <header className="header">
             <h2>{value.name === "" ? name : value.name}</h2>
             <p>Description: {value.description}</p>
